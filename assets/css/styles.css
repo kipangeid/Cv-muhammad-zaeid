@@ -191,8 +191,8 @@ img {
 /*===== HOME =====*/
 .home {
   position: relative;
-  row-gap: 3rem;
-  padding: 4rem 0 5rem;
+  row-gap: 2rem;
+  padding: 4rem 0 2rem;
 }
 
 .home__data {
@@ -201,7 +201,7 @@ img {
 
 .home__title {
   font-size: var(--big-font-size);
-  margin-bottom: var(--mb-5);
+  margin-bottom: var(--mb-2);
 }
 
 .home__title-color {
@@ -227,9 +227,7 @@ img {
 }
 
 .home__img {
-  position: absolute;
-  right: 0;
-  bottom: 0;
+  justify-self: center;
   width: 260px;
 }
 
