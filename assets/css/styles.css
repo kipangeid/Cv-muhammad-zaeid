@@ -620,23 +620,27 @@ img {
   }
   .home {
     padding: 10rem 0 2rem;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    column-gap: 2rem;
     align-items: center;
-    text-align: center;
+    text-align: initial;
   }
   .home__data {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: block;
+    grid-column: 1;
+    grid-row: 1;
+    width: initial;
   }
   .home__img {
+    grid-column: 2;
+    grid-row: 1;
     width: 100%;
-    max-width: 400px;
-    margin: 2rem 0;
+    max-width: 450px;
+    margin: 0;
   }
   .home__social {
-    justify-content: center;
+    justify-content: flex-start;
   }
   .about__container {
     padding-top: 2rem;
