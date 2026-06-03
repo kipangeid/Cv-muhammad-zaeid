@@ -631,6 +631,7 @@ img {
     grid-column: 1;
     grid-row: 1;
     width: initial;
+    text-align: left;
   }
   .home__img {
     grid-column: 2;
@@ -638,6 +639,8 @@ img {
     width: 100%;
     max-width: 450px;
     margin: 0;
+    display: flex;
+    justify-content: flex-end;
   }
   .home__social {
     justify-content: flex-start;
