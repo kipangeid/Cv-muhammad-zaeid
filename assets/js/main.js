@@ -54,3 +54,51 @@ sr.reveal('.home__data, .about__img, .skills__subtitle, .skills__text',{});
 sr.reveal('.home__img, .about__subtitle, .about__text, .skills__img',{delay: 400}); 
 sr.reveal('.home__social-icon',{ interval: 200}); 
 sr.reveal('.skills__data, .work__img, .contact__input',{interval: 200}); 
+
+/*===== CONTACT FORM SUBMISSION =====*/
+const contactForm = document.getElementById('contact-form');
+const contactStatus = document.getElementById('contact-status');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const data = new FormData(contactForm);
+        const button = document.getElementById('contact-button');
+        
+        button.disabled = true;
+        button.innerText = 'Sending...';
+        contactStatus.innerText = '';
+        contactStatus.className = '';
+
+        try {
+            const response = await fetch(contactForm.action, {
+                method: contactForm.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                contactStatus.innerText = 'Terima kasih! Pesan Anda telah berhasil dikirim.';
+                contactStatus.classList.add('success-message');
+                contactForm.reset();
+            } else {
+                const result = await response.json();
+                if (Object.hasOwn(result, 'errors')) {
+                    contactStatus.innerText = result.errors.map(error => error.message).join(", ");
+                } else {
+                    contactStatus.innerText = 'Ups! Terjadi masalah saat mengirim pesan Anda.';
+                }
+                contactStatus.classList.add('error-message');
+            }
+        } catch (error) {
+            contactStatus.innerText = 'Ups! Terjadi kesalahan koneksi.';
+            contactStatus.classList.add('error-message');
+        } finally {
+            button.disabled = false;
+            button.innerText = 'Send';
+        }
+    });
+}
